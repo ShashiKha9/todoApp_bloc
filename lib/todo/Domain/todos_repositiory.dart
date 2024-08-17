@@ -15,8 +15,8 @@ class TodoRepository {
   void addTodo(Todo todo) {
     _todos.add(todo);
     _streamController.sink.add(_todos);
-  }fdgdfg
-fdgdfg
+  }
+
   void deleteTodo(String  todo) {
     _todos.removeWhere((task) => task.title == todo);
     _streamController.sink.add(_todos);
