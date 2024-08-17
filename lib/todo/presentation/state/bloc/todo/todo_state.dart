@@ -1,7 +1,7 @@
 part of 'todo_bloc.dart';
 
 abstract class TodoState extends Equatable {
-  final Stream<List<Todo>>? filteredtask;
+  final List<Todo>? filteredtask;
   const TodoState(  this.filteredtask);
 
 }

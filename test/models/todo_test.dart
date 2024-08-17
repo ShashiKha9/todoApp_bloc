@@ -1,62 +1,108 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:todoapp_bloc/todo/Domain/todos_repositiory.dart';
 import 'package:todoapp_bloc/todo/data/model/todoModel.dart';
 
-import '../../lib/todo/Domain/todos_repositiory.dart';
 import '../../lib/todo/presentation/state/bloc/todo/todo_bloc.dart';
-
-// Create a mock for the TodoRepository
-class MockTodoRepository extends Mock implements TodoRepository {}
 
 void main() {
   group('TodoBloc', () {
-    late MockTodoRepository mockTodoRepository;
     late TodoBloc todoBloc;
+    late TodoRepository todoRepository;
 
     setUp(() {
-      mockTodoRepository = MockTodoRepository();
-      todoBloc = TodoBloc(mockTodoRepository);
+      todoRepository = TodoRepository();
+      todoBloc = TodoBloc(todoRepository);
     });
 
     tearDown(() {
       todoBloc.close();
+      todoRepository.dispose();
+    });
+
+    test('initial state is TodoInitial', () {
+      expect(todoBloc.state, equals(TodoInitial()));
     });
 
     blocTest<TodoBloc, TodoState>(
-      'emits [TodoFilteredState] when FilterTodoEvent is added',
+      'emits [TodoFilteredState] with todos when FilterTodoEvent is added',
       build: () {
-        when(mockTodoRepository.getTodos()).thenReturn([Todo(
-          title: 'Test Task',
+        todoRepository.addTodo(Todo(
+          title: 'Test Task 1',
           isCompleted: false,
-        )] as Stream<List<Todo>>);
+        ));
+        todoRepository.addTodo(Todo(
+          title: 'Test Task 2',
+          isCompleted: true,
+        ));
         return todoBloc;
       },
       act: (bloc) => bloc.add(FilterTodoEvent()),
       expect: () => [
-        isA<TodoFilteredState>(),
+        TodoFilteredState([
+          Todo(
+            title: 'Test Task 1',
+            isCompleted: false,
+          ),
+          Todo(
+            title: 'Test Task 2',
+            isCompleted: true,
+          ),
+        ]),
       ],
-      verify: (_) {
-        verify(mockTodoRepository.getTodos()).called(1);
-      },
     );
 
     blocTest<TodoBloc, TodoState>(
-      'emits nothing when DeleteTodoEvent is added',
+      'emits [TodoFilteredState] when a todo is deleted',
       build: () {
-        final task = Todo(
-          title: 'Test Task',
+        todoRepository.addTodo(Todo(
+          title: 'Test Task 1',
           isCompleted: false,
-        );
-        when(mockTodoRepository.deleteTodo(task.title)).thenAnswer((_) async => {});
+        ));
+        todoRepository.addTodo(Todo(
+          title: 'Test Task 2',
+          isCompleted: true,
+        ));
         return todoBloc;
       },
-      act: (bloc) => bloc.add(DeleteTodoEvent()),
-      expect: () => [],
-      verify: (_) {
-        verify(mockTodoRepository.deleteTodo(any)).called(1);
+      act: (bloc) {
+        bloc.add(DeleteTodoEvent('Test Task 1'));
+        bloc.add(FilterTodoEvent());
       },
+      expect: () => [
+        TodoFilteredState([
+          Todo(
+            title: 'Test Task 2',
+            isCompleted: true,
+          ),
+        ]),
+      ],
+    );
+
+    blocTest<TodoBloc, TodoState>(
+      'emits [TodoFilteredState] when a todo is marked as complete',
+      build: () {
+        todoRepository.addTodo(Todo(
+          title: 'Test Task 1',
+          isCompleted: false,
+        ));
+        return todoBloc;
+      },
+      act: (bloc) {
+        todoRepository.markComplete(Todo(
+          title: 'Test Task 1',
+          isCompleted: false,
+        ));
+        bloc.add(FilterTodoEvent());
+      },
+      expect: () => [
+        TodoFilteredState([
+          Todo(
+            title: 'Test Task 1',
+            isCompleted: true,
+          ),
+        ]),
+      ],
     );
   });
 }

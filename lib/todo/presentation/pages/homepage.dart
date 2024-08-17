@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:todoapp_bloc/todo/data/model/todoModel.dart';
 import 'package:todoapp_bloc/todo/presentation/state/bloc/blocexports.dart';
+import 'package:todoapp_bloc/todo/presentation/state/bloc/newtodo/new_todo_bloc.dart';
 import 'package:todoapp_bloc/todo/presentation/state/bloc/todo/todo_bloc.dart';
 import 'package:todoapp_bloc/todo/presentation/widgets/task_list.dart';
 import 'package:todoapp_bloc/todo/presentation/widgets/dialog_newtodo.dart';
@@ -33,6 +34,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final FocusNode focusNode = FocusNode();
     final todoBloc = context.read<TodoBloc>();
+    final todoBlocs = context.read<NewTodoBloc>();
+
 
     // print("Todo list length: ${todoList.length}");
                 return Scaffold(
@@ -61,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     body:
     StreamBuilder<List<Todo>>(
-    stream: todoBloc.state.filteredtask,
+    stream: todoBloc.todoRepository.todoStream,
     builder: (BuildContext context, AsyncSnapshot<List<Todo>> snapshot) {
 
       if(snapshot.connectionState==ConnectionState.waiting){

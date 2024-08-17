@@ -7,9 +7,12 @@ class TodoRepository {
 
   final _streamController= StreamController<List<Todo>>.broadcast();
 
-  Stream<List<Todo>> getTodos() {
+  Stream<List<Todo>> get todoStream => _streamController.stream;
+
+
+  List<Todo> getTodos() {
     _streamController.sink.add(_todos);
-    return _streamController.stream;
+    return _todos;
   }
 
   void addTodo(Todo todo) {
@@ -25,6 +28,7 @@ class TodoRepository {
   }
 
   void markComplete(Todo todo){
+    final index=_todos.indexOf(todo);
       final task= _todos.firstWhere((task) => task.title==todo.title);
       task.isCompleted == false?task.isCompleted= true:task.isCompleted=false;
 
