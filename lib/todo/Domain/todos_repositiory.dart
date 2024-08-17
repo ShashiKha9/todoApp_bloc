@@ -11,7 +11,7 @@ class TodoRepository {
     _streamController.sink.add(_todos);
     return _streamController.stream;
   }
-fdg
+
   void addTodo(Todo todo) {
     _todos.add(todo);
     _streamController.sink.add(_todos);
@@ -25,7 +25,6 @@ fdg
   }
 
   void markComplete(Todo todo){
-    final index=_todos.indexOf(todo);
       final task= _todos.firstWhere((task) => task.title==todo.title);
       task.isCompleted == false?task.isCompleted= true:task.isCompleted=false;
 
