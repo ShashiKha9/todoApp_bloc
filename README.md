@@ -3,6 +3,34 @@ This is a Flutter todo app that utilizes BLoC state management and clean archite
 The app allows users to add, Update, delete, and filter tasks as All Tasks, Completed Tasks, and Pending Tasks.
 
 # Project Structure:
+lib/
+│
+├── data/
+│   ├── models/
+│   └── repositories/
+│
+├── domain/
+│   ├── 
+│   └── repositories/
+│
+├── presentation/
+│   ├── state/
+         bloc/
+│    └── complete_todo/
+│   │   └── new_todo/
+│   │   └── todo/
+│   ├── pages/
+│   │   ├── home_page.dart
+│   │   └── 
+│   └── widgets/
+│       └── task_list.dart
+│       └── bottom_nav_bar.dart
+│       └── dialog_new_todo.dart
+
+│
+├── main.dart
+└── README.md
+
 
 'lib/' The main directory, which is structured into various layers representing the core of clean architecture.
 features/todo/
