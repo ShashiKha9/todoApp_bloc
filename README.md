@@ -6,40 +6,6 @@ The app allows users to add, Update, delete, and filter tasks as All Tasks, Comp
 ![ps](https://github.com/user-attachments/assets/0e1cb813-fda3-440c-a3c8-a46cc279288d)
 ![ps2](https://github.com/user-attachments/assets/dbbba09f-a175-4426-bbaa-7200c5ac9b9c)
 
-
-lib/
-│
-├── data/
-│   ├── models/
-│   └── repositories/
-│
-├── domain/
-│   ├── 
-│   └── repositories/
-│
-├── presentation/
-│   ├── state/
-         bloc/
-│    └── complete_todo/
-│   │   └── new_todo/
-│   │   └── todo/
-│   ├── pages/
-│   │   ├── home_page.dart
-│   │   └── 
-│   └── widgets/
-│       └── task_list.dart
-│       └── bottom_nav_bar.dart
-│       └── dialog_new_todo.dart
-
-│
-├── main.dart
-│   └── test/
-│       └── home_page_test.dart
-│       └── todo_test.dart
-└── README.md
-
-
-
 'lib/' The main directory, which is structured into various layers representing the core of clean architecture.
 features/todo/
 This directory is specific to the todo feature and is further divided into subdirectories representing different layers of clean architecture.
