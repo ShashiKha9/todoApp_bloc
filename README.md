@@ -1,4 +1,6 @@
 # todoapp_bloc
+Todo App
+This is a Flutter todo app that utilizes BLoC state management and clean architecture principles. The app allows users to add, delete, and filter tasks as All Tasks, Completed Tasks, and Pending Tasks.
 #Project Structure:
 
 'lib/' The main directory, which is structured into various layers representing the core of clean architecture.
