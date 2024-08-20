@@ -3,6 +3,8 @@ This is a Flutter todo app that utilizes BLoC state management and clean archite
 The app allows users to add, Update, delete, and filter tasks as All Tasks, Completed Tasks, and Pending Tasks.
 
 # Project Structure:
+![ps](https://github.com/user-attachments/assets/0e1cb813-fda3-440c-a3c8-a46cc279288d)
+
 lib/
 │
 ├── data/
