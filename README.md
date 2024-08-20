@@ -86,6 +86,8 @@ cd <todo_app>
     ```bash flutter run 
 
  To run the unit and widget tests, execute:```bash flutter test
+ 
+ To build apk:```flutter build apk
 
 Author: Shashi Kha
 Email: shashikha1000@gmail.com
