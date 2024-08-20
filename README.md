@@ -4,6 +4,8 @@ The app allows users to add, Update, delete, and filter tasks as All Tasks, Comp
 
 # Project Structure:
 ![ps](https://github.com/user-attachments/assets/0e1cb813-fda3-440c-a3c8-a46cc279288d)
+![ps2](https://github.com/user-attachments/assets/dbbba09f-a175-4426-bbaa-7200c5ac9b9c)
+
 
 lib/
 │
