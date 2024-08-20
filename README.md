@@ -33,6 +33,8 @@ task_list.dart_for display tasks
 fonts/: Custom fonts used for styling text in the app.
 test/
 Contains unit and widget tests for ensuring the correctness of each layer in the clean architecture.
+todo_test.dart.
+home_page_test.dart
 
 pubspec.yaml
 The configuration file for the Flutter project.
@@ -44,28 +46,15 @@ Configures assets, fonts, and other settings.
 git clone <https://github.com/ShashiKha9/todoApp_bloc.git>
 cd <todo_app>
 
-**Install dependencies:**
-    ```
-    flutter pub get
-    ```
+**Install dependencies:** flutter pub get
+        
 
- **Set up an emulator or connect a device:**
-    - For Android: Use Android Studio to set up an emulator.
-    - For iOS: Use Xcode to set up a simulator.
+ **Set up an emulator or connect a device:**  - For Android: Use Android Studio to set up an emulator. - For iOS: Use Xcode to set up a simulator.
 
   **Using the Terminal:**
-    ```bash
-  flutter run
+    ```bash flutter run 
 
-   **Using an IDE:**
-    - Open the project in Android Studio or VS Code.
-    - Select the target device.
-    - Click on the "Run" button.
-    ```
-
- To run the unit and widget tests, execute:
-```bash
-flutter test
+ To run the unit and widget tests, execute:```bash flutter test
 
 Author: Shashi Kha
 Email: shashikha1000@gmail.com
