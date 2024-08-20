@@ -46,9 +46,13 @@ Configures assets, fonts, and other settings.
 # Features.
 Add Tasks: Users can add new tasks to their todo list.
 Delete Tasks: Users can delete tasks from the list.
+
 Update Tasks: Use can Update Existing tasks.
+
 Filter Tasks: Users can filter tasks by All Tasks, Completed Tasks, and Pending Tasks.
+
 State Management: The app uses  separate BLoC for each feature for efficient state management, ensuring a smooth user experience.
+
 Clean Architecture: The app is structured using clean architecture principles, making it easy to maintain and extend.
 
 # Instruction on How to run the app.
