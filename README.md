@@ -39,14 +39,14 @@ The configuration file for the Flutter project.
 Lists all dependencies used in the app (e.g., flutter_bloc, hive, etc.).
 Configures assets, fonts, and other settings.
 
-#Instruction on How to run the app.
+# Instruction on How to run the app.
 
 git clone <https://github.com/ShashiKha9/todoApp_bloc.git>
-cd <repository-directory>
+cd <todo_app>
 
 **Install dependencies:**
     ```
-      flutter pub get
+    flutter pub get
     ```
 
  **Set up an emulator or connect a device:**
