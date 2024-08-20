@@ -33,8 +33,8 @@ dialog_new_todo.dart: adding new task.
 task_list.dart_for display tasks
 
 fonts/: Custom fonts used for styling text in the app.
-test/
-Contains unit and widget tests for ensuring the correctness of each layer in the clean architecture.
+
+test/: Contains unit and widget tests for ensuring the correctness of each layer in the clean architecture.
 todo_test.dart.
 home_page_test.dart
 
