@@ -13,17 +13,25 @@ class DialogNewTodo extends StatelessWidget {
     super.key,
     required this.titleController,
     required this.focusNode,
+    this.existingTodo
   });
 
   final TextEditingController titleController;
   final FocusNode focusNode;
+  final Todo? existingTodo;
+
 
 
   @override
   Widget build(BuildContext context) {
     final taskBloc = context.read<NewTodoBloc>();
+    final taskBlocs = context.read<TodoBloc>();
 
-        return BackdropFilter(
+    if (existingTodo != null) {
+      titleController.text = existingTodo!.title;
+    }
+
+        return  BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
           child: AlertDialog(
             shape: RoundedRectangleBorder(
@@ -89,8 +97,10 @@ class DialogNewTodo extends StatelessWidget {
             actions: [
               TextButton(onPressed: () {
                 var todo = Todo(title: titleController.text);
-                // context.read<AddTodoBloc>().add(AddTodoEvent(task: todo));
-                taskBloc.add(AddNewTodoEvent(todo));
+                existingTodo==null  ?
+                taskBloc.add(AddNewTodoEvent(todo)):
+
+               taskBlocs.add(UpdateTodoEvent(todo,existingTodo!.title));
 
 
                 print(titleController.text);

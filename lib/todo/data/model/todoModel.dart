@@ -1,28 +1,31 @@
- class Todo {
+import 'package:hive/hive.dart';
+part 'todoModel.g.dart';
+@HiveType(typeId: 0)
+class Todo extends HiveObject {
+  @HiveField(0)
   String? id;
+  @HiveField(1)
   String title;
+  @HiveField(2)
   bool? isCompleted;
-  bool? isPending;
+  @HiveField(3)
   bool? isDeleted;
 
   Todo({required this.title,
      this.isCompleted,
     this.id,
-   this.isPending,
    this.isDeleted});
 
   Todo copyWith({
     String? id,
     String? title,
     bool? isCompleted,
-    bool? isPending,
     bool? isDeleted,
 }){
     return Todo(
         title: title ?? this.title,
       id: id?? this.id,
       isCompleted: isCompleted ?? this.isCompleted,
-      isPending: isPending ?? this.isPending,
       isDeleted: isDeleted ?? this.isDeleted,
     );
   }
@@ -33,7 +36,6 @@
       id: json["id"],
       title: json["title"],
       isCompleted: json["isCompleted"].toLowerCase() == 'true',
-      isPending: json["isPending"].toLowerCase() == 'true',
       isDeleted: json["isDeleted"].toLowerCase() == 'true',
     );
   }
@@ -43,7 +45,6 @@
       "id": this.id,
       "title": this.title,
       "isCompleted": this.isCompleted,
-      "isPending": this.isPending,
       "isDeleted": this.isDeleted,
     };
   }

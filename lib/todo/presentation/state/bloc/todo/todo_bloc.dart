@@ -13,6 +13,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
 
     on<FilterTodoEvent>(_onFilterTodo);
     on<DeleteTodoEvent>(_onDeleteTodo);
+    on<UpdateTodoEvent>(_onUpdateTodo);
 
 
 
@@ -33,6 +34,14 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
 
 
     emit(TodoFilteredState(filtered));
+  }
+
+  void _onUpdateTodo(UpdateTodoEvent event, Emitter<TodoState>emit){
+    final task = event.task;
+    todoRepository.updateTodo(task,event.oldTitle);
+    emit(TodoFilteredState(todoRepository.getTodos()));
+
+
   }
 
   // void _onCompleteTodo(CompleteTodoEvent event, Emitter<TodoState>emit){

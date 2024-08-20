@@ -25,6 +25,17 @@ class DeleteTodoEvent extends TodoEvent{
   List<Object?> get props => [];
 
 }
+class UpdateTodoEvent extends TodoEvent{
+  final Todo task;
+  final String oldTitle;
+
+  UpdateTodoEvent( this.task,this.oldTitle);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+
+}
 
 class CompleteTodoEvent extends TodoEvent{
   final String  task;
