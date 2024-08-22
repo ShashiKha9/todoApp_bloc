@@ -35,51 +35,80 @@ class TaskList extends StatelessWidget {
             itemBuilder: (context, index) {
               final task = todoList[index];
 
-              return ListTile(
-                  title: Text(task.title),
-                  leading:
-                  Checkbox(
-                    value: task.isCompleted == false?true:false,
-                    onChanged: (value) {
-                      completeTodoBloc.add(MarkCompleteTodoEvent(task));
-                      print(task.isCompleted);
-                      print("eewrw");
-                    },
+              return Container(
+                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200.withOpacity(1),
+                    borderRadius: BorderRadius.circular(20.0),
+                    border: Border.all(color:   task.isCompleted==false ?Colors.lightGreen.shade400:
+                    Colors.lightBlue.shade200,width: 2.0),
+                    boxShadow: [
+                BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: Offset(0, 3),
+              )
+              ]
+              ),
+              // changes position of shadow
+                child: Padding(
+                  padding: const EdgeInsets.all(7.0),
+                  child: ListTile(
 
+
+
+
+                    tileColor: Colors.grey.shade200.withOpacity(1.0),
+
+                   
+
+                      title: Text(task.title,style: GoogleFonts.roboto(fontWeight: FontWeight.w400),),
+                      leading:
+                      Checkbox(
+                        value: task.isCompleted == false?true:false,
+                        onChanged: (value) {
+                          completeTodoBloc.add(MarkCompleteTodoEvent(task));
+                          print(task.isCompleted);
+                          print("eewrw");
+                        },
+
+
+                      ),
+
+                      trailing:SizedBox(
+                        width: 100,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            InkWell(
+                                onTap: () {
+                                  showDialog(
+                                      context: context, builder: (context) {
+                                    return DialogNewTodo(
+                                      titleController: titleController,
+                                      focusNode: focusNode,
+                                    existingTodo: task);
+                                  });
+
+                                },
+                                child: Icon(Icons.edit,)
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  todoBloc.add(DeleteTodoEvent(task.title));
+                                },
+                                child: Icon(Icons.cancel_rounded, color: Colors.red[500],)
+                            ),
+
+
+
+                          ],
+                        ),
+                      )
 
                   ),
-
-                  trailing:SizedBox(
-                    width: 100,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                              showDialog(
-                                  context: context, builder: (context) {
-                                return DialogNewTodo(
-                                  titleController: titleController,
-                                  focusNode: focusNode,
-                                existingTodo: task);
-                              });
-
-                            },
-                            child: Icon(Icons.edit,)
-                        ),
-                        InkWell(
-                            onTap: () {
-                              todoBloc.add(DeleteTodoEvent(task.title));
-                            },
-                            child: Icon(Icons.cancel_rounded, color: Colors.red,)
-                        ),
-
-
-
-                      ],
-                    ),
-                  )
-
+                ),
               );
             },
 
