@@ -39,27 +39,23 @@ class TaskList extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                 decoration: BoxDecoration(
                   color: Colors.grey.shade200.withOpacity(1),
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(15),
                     border: Border.all(color:   task.isCompleted==false ?Colors.lightGreen.shade400:
                     Colors.lightBlue.shade200,width: 2.0),
                     boxShadow: [
                 BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withOpacity(0.3),
                 spreadRadius: 2,
                 blurRadius: 5,
                 offset: Offset(0, 3),
               )
               ]
               ),
-              // changes position of shadow
-                child: Padding(
-                  padding: const EdgeInsets.all(7.0),
                   child: ListTile(
 
 
 
 
-                    tileColor: Colors.grey.shade200.withOpacity(1.0),
 
                    
 
@@ -108,7 +104,7 @@ class TaskList extends StatelessWidget {
                       )
 
                   ),
-                ),
+
               );
             },
 
